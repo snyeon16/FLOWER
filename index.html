@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>FLOWER</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <style>
+        html, body {
+            margin: 0px;
+            height: 100%;
+        }
+        .switch{
+            position:absolute;
+            width:150px; height:50px; left:50%; top: 20%; 
+            border: 1px solid #000000; border-radius: 25px; 
+            transform: translate(-75px, 0);
+            
+        }
+        .circle{
+            position:absolute; left: 2.5px; top: 2.5px;
+            width:45px; height: 45px; 
+            background-color: #000000;
+            border-radius: 22.5px;
+            transition: background-color 0.3s; 
+            transition: left 0.3s;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="switch" onClick="clickFunc()">
+        <div class = "circle"></div>
+    </div>
+    <script>
+        let clickVal = "morning";
+        const swtani = document.querySelector('.switch');
+        const circleAni = document.querySelector('.circle');
+        let r = 0;
+        function setup(){
+            createCanvas(windowWidth, windowHeight);
+            background(220);
+            angleMode(DEGREES);
+        }
+        function windowResized(){
+            resizeCanvas(windowWidth, windowHeight);
+        }
+        function draw(){
+            
+            let bcl;
+            if(clickVal == "morning"){
+                bcl = 255;
+            } else{
+                bcl = 0;
+            }
+            background(bcl);
+            if(clickVal == "morning"){
+                
+                happyFlower();
+            } else{
+                angryFlower();
+            
+            }
+        }
+        function clickFunc(){
+            if(clickVal == "morning"){
+                clickVal = "night";
+                swtani.style.border = "1px solid #ffffff";
+                circleAni.style.backgroundColor = "#ffffff";
+                circleAni.style.left = "102.5px";
+            }else{
+                clickVal = "morning";
+                swtani.style.border = "1px solid #000000";
+                circleAni.style.backgroundColor = "#000000";
+                circleAni.style.left = "2.5px";
+            }
+        }
+        
+        function happyFlower(){
+                r = r+1.3;
+                translate(width/2,550);
+                push();
+                fill(0);
+                rotate(r);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                fill(255);
+                ellipse(0,0,180,180);
+                pop();
+                strokeWeight(2);
+                stroke(0);
+                ellipse(-33,-15,35,35);
+                ellipse(33,-15,35,35);
+                ellipse(0,25,70,60);
+                fill(255);
+                noStroke();
+                rectMode(CENTER);
+                rect(0,3,120,40);
+                stroke(0);
+                line(-35,23,35,23);
+        }
+        function angryFlower(){
+                r = r-1.3;
+                translate(width/2,550);
+                push();
+                fill(255);
+                rotate(r);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                rotate(72);
+                ellipse(90,0,200,150);
+                fill(0);
+                ellipse(0,0,180,180);
+                pop();
+                strokeWeight(2);
+                stroke(255);
+                line(-50.5,-32.5,-18,-20);
+                line(50.5,-32.5,18,-20)
+                
+                ellipse(0,40,70,60);
+                fill(0);
+                noStroke();
+                rectMode(CENTER);
+                rect(0,55,80,35);
+                
+                
+        }
+    </script>
+</body>
+</html>
